@@ -77,3 +77,54 @@ To create IAM users and groups, attach policies, and validate access control usi
 This lab illustrates how IAM allows fine-grained access control. By assigning only the necessary permissions to `test_user_1` (S3-only), and none to `test_user_2`, we ensured users only had the access they required and nothing more — a core principle of cloud security known as **Least Privilege**.
 
 ---
+
+## 🔐 Appendix: AWS IAM Overview
+
+# 🔐 AWS IAM (Identity and Access Management)
+
+## 📘 Overview
+
+AWS IAM (Identity and Access Management) is the security backbone of AWS. It allows you to control **who** can access **what** in your AWS account using identities (users, roles, groups) and fine-grained permissions.
+
+---
+
+## 🧱 Core Concepts
+
+### 1. IAM Users
+- Represent human identities (e.g., `dev_ali`)
+- Can have:
+  - Programmatic access (via access keys)
+  - AWS Console access (via passwords)
+
+**Use Case**: Only for individuals who need long-term credentials.
+
+---
+
+### 2. IAM Groups
+- Logical collections of users.
+- Permissions are attached to groups and inherited by users.
+
+**Use Case**: Assign `AmazonS3FullAccess` to a group called `S3Admins` instead of individual users.
+
+---
+
+### 3. IAM Roles
+- Temporary identity assumed by:
+  - EC2 instances
+  - Lambda functions
+  - Other AWS services
+  - Federated users or AWS accounts
+
+**Use Case**: Assign an EC2 instance a role to access an S3 bucket without storing access keys.
+
+---
+
+### 4. IAM Policies
+- JSON documents that define permissions:
+```json
+{
+  "Effect": "Allow",
+  "Action": "s3:*",
+  "Resource": "*"
+}
+
